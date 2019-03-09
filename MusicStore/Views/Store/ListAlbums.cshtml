@@ -1,0 +1,19 @@
+﻿@model MusicStore.Models.Genre
+
+@{
+    ViewData["Title"] = "Albums";
+}
+
+<h2>@ViewBag.Title</h2>
+<p>
+    @Model.Name @ViewBag.Title
+</p>
+
+<ul class="row list-unstyled jumbotron-fluid" id="random-albums">
+    @foreach (var item in Model.Albums)
+    {
+        <li class="col-lg-3 col-md-3 col-sm-3 col-xs-4 container">
+            @Html.Partial("_AlbumDetail", item)
+        </li>
+    }
+</ul>

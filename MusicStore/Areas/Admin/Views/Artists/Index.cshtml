@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MusicStore.Models.Artist>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@for (int i = 65; i < 91; i++)
+{
+    <a asp-route-id="@((char)i)">@((char)i)</a>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ArtistID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ArtistID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ArtistID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

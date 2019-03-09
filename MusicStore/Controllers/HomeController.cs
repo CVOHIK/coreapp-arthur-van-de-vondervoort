@@ -4,34 +4,25 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MusicStore.Data;
 using MusicStore.Models;
 
 namespace MusicStore.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly StoreContext _context;
+
+        public HomeController(StoreContext context)
         {
-            return View();
+            _context = context;
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> Index()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            var randomAlbums = _context.Albums.OrderBy(a => Guid.NewGuid()).Take(6);
+            return View(await randomAlbums.ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

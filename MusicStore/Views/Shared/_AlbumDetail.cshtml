@@ -1,0 +1,6 @@
+﻿@model MusicStore.Models.Album
+
+<a asp-controller="Store" asp-action="Details" asp-route-id="@Model.AlbumID">
+    <img alt="@Model.Title" src="@Url.Content("~/content/" + @Model.AlbumArtUrl)" class="img-fluid img-thumbnail" />
+    <p>@Model.Title</p>
+</a>
