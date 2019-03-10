@@ -13,7 +13,7 @@
     @foreach (var item in Model.Albums)
     {
         <li class="col-lg-3 col-md-3 col-sm-3 col-xs-4 container">
-            @Html.Partial("_AlbumDetail", item)
+            @await Html.PartialAsync("_AlbumDetail", item)
         </li>
     }
 </ul>
